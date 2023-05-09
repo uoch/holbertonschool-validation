@@ -1,0 +1,5 @@
+baseURL = 'Welcome to Awesome Inc.'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'ananke'
+publishDir = "dist"
