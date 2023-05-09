@@ -2,7 +2,7 @@
 
 # Build the website
 build:
-	@hugo
+	hugo
 # Clean up the build directory
 clean:
 	rm -rf dist/*
