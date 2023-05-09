@@ -1,4 +1,4 @@
-# Makefile for Go-Hugo website
+
 
 # build: Builds the website
 build:
@@ -15,6 +15,6 @@ post:
 
 # help : Help about any command
 help:
-	@echo "Usage:"
-	@cat Makefile | grep "^#" | sed 's/#/\n#/'
+	@echo "Usage:\n"
+	@cat Makefile | grep "^#" | sed 's/^# \(.*\)/\1\n/'
 
