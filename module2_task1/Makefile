@@ -13,8 +13,8 @@ stop: ## Stop awesome-api application
 clean: stop ## Clean awesome-api application and log
 	rm -f awesome-api awesome-api.log
 
-## test: Ensure that it behaves as expected
-test: 
+
+test: ## test: Ensure that it behaves as expected
 	@echo "# Test 1:"
 	@if curl  http://localhost:9999 ; then \
 		echo "TESTOK"; \
