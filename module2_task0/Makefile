@@ -1,4 +1,4 @@
-build: lint ## Build awesome-api
+build: ## Build awesome-api
 	go build -o awesome-api
 
 run: ## Run awesome-api application
