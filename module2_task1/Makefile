@@ -17,7 +17,8 @@ clean:
 	@rm -rf dist/*
 	@rm -f awesome-api awesome-api.log
 	@pkill awesome-api
-
+lint: ## Catch such errors without the need to compile or execute the application
+	@golangci-lint run ./*.go
 
 ## test: Ensure that it behaves as expected
 test: 
