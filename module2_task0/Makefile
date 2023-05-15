@@ -1,26 +1,16 @@
+build: lint ## Build awesome-api
+	go build -o awesome-api
 
+run: ## Run awesome-api application
+	./awesome-api >./awesome-api.log 2>&1 &
 
-## build: Builds the website
-build:
-	@hugo
-	@go build -o awesome-api ./*.go
-## Run : the application in background
-run: 
-	@./awesome-api >./awesome-api.log 2>&1 &
+stop: ## Stop awesome-api application
+	kill $$(pgrep awesome-api) || true
 
-## Stop : the application with the command kill
-stop: 
-	@pkill awesome-api
+clean: stop ## Clean awesome-api application and log
+	rm -f awesome-api awesome-api.log
 
-## clean: Cleans up the build directory
-clean:
-	@rm -rf dist/*
-	@rm -f awesome-api awesome-api.log
-	@pkill awesome-api
-
-
-## test: Ensure that it behaves as expected
-test: 
+test: ## test: Ensure that it behaves as expected
 	@echo "# Test 1:"
 	@if curl  http://localhost:9999 ; then \
 		echo "TESTOK"; \
@@ -34,12 +24,7 @@ test:
 		echo "TESTFAILED"; \
 	fi
 
-## post : POST_NAME=<post-name> POST_TITLE=<post-title>: Creates a new blog post with the specified name and title
-post:
-	hugo new posts/$(POST_NAME).md
-	sed -i 's/title: .*/title: "$(POST_TITLE)"/' content/posts/$(POST_NAME).md
-
-## help : Help about any command
-help:
-	@cat Makefile | grep "^#" | sed 's/^## \(.*\)/\1\n/'
+.SILENT:
+help: ## Display what each command does
+	cat Makefile | grep '##' | tr -d '##' | head -n -1
 
