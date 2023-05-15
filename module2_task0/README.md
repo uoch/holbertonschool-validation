@@ -1,21 +1,19 @@
-# Module 1: Introduction to DevOps: Automate Everything to Focus on What Really Matters
+# Awesome Inc. website Docs
+Welcome to our site, please follow the next information in order to have a working website.
+
 ## Prerequisites
+- Hugo v0.80+ must be used.
+- Usage of Git Submodules is prohibited.
+- Use the theme "ananke" for the website by following:
+	- `Note for non-git users` at the [Step 3](https://docs.edg.io/guides/sites_frameworks/getting_started/hugo).
+- The website is expected to be generated into ./dist folder but this folder should be **absent** from the repo.
 
 ## Lifecycle
-### build : 
-    Builds the website
-## Run : 
-    The application in background
-### clean : 
-    Cleans up the build directory
-## Stop : 
-    The application with the command kill
-### test: 
-    Ensure that it behaves as expected
-### post : 
-    POST_NAME=<post-name> POST_TITLE=<post-title>: Creates a new blog post with the specified name and title
-### help : 
-    Help about any command
-## steps
-## Makefile
-### clean
+- post
+- build
+- clean
+- help
+- run
+- stop
+- test
+- lint
