@@ -1,21 +1,17 @@
+lint: ## lint
+	golangci-lint run ./main.go
 
-## build: Builds the website
-build:
-	@hugo
-	@go build -o awesome-api ./*.go
-## Run : the application in background
-run: 
-	@./awesome-api >./awesome-api.log 2>&1 &
+build: lint ## Build awesome-api
+	go build -o awesome-api
 
-## Stop : the application with the command kill
-stop: 
-	@pkill awesome-api
+run: ## Run awesome-api application
+	./awesome-api >./awesome-api.log 2>&1 &
 
-## clean: Cleans up the build directory
-clean:
-	@rm -rf dist/*
-	@rm -f awesome-api awesome-api.log
-	@pkill awesome-api
+stop: ## Stop awesome-api application
+	kill $$(pgrep awesome-api) || true
+
+clean: stop ## Clean awesome-api application and log
+	rm -f awesome-api awesome-api.log
 
 ## test: Ensure that it behaves as expected
 test: 
@@ -41,7 +37,7 @@ post:
 lint: 
 	@golangci-lint run 
 
-## help : Help about any command
-help:
-	@cat Makefile | grep "^#" | sed 's/^## \(.*\)/\1\n/'
+.SILENT:
+help: ## Display what each command does
+	cat Makefile | grep '##' | tr -d '##' | head -n -1
 
