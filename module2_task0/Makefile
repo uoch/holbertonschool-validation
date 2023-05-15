@@ -14,6 +14,7 @@ stop:
 
 ## clean: Cleans up the build directory
 clean:
+	@pkill awesome-api
 	@rm -rf dist/*
 	@rm -f awesome-api awesome-api.log 
 
