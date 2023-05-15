@@ -6,7 +6,7 @@ build:
 	@go build -o awesome-api
 
 run: ## Run the application in background
-	@./awesome-api
+	@./awesome-api ./awesome.log
 
 stop: ## Stop the application with the command kill
 	@pkill awesome-api
