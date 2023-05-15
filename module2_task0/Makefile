@@ -15,7 +15,7 @@ stop:
 ## clean: Cleans up the build directory
 clean:
 	@rm -rf dist/*
-	@rm -f awesome-api awesome.log awesome-api.log 
+	@rm -f awesome-api awesome-api.log 
 
 
 ## test: Ensure that it behaves as expected
