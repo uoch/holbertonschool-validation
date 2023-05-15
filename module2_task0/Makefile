@@ -6,7 +6,7 @@ build:
 	@go build -o awesome-api
 
 run: ## Run the application in background
-	@./awesome-api >./awesome-api.log 2>&1 &
+	@./awesome-api >./awesome.log 2>&1 &
 
 stop: ## Stop the application with the command kill
 	@pkill awesome-api
@@ -14,7 +14,7 @@ stop: ## Stop the application with the command kill
 ## clean: Cleans up the build directory
 clean:
 	@rm -rf dist/*
-	@rm -f awesome-api awesome-api.log
+	@rm -f awesome-api awesome.log
 
 ## post : POST_NAME=<post-name> POST_TITLE=<post-title>: Creates a new blog post with the specified name and title
 post:
