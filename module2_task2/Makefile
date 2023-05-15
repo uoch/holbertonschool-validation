@@ -1,50 +1,26 @@
+lint: ## lint
+	golangci-lint run ./main.go
 
-## build: Builds the website
-build:
-	@hugo
-	@go build -o awesome-api ./*.go
-## Run : the application in background
-run: 
-	@./awesome-api >./awesome-api.log 2>&1 &
+build: lint ## Build awesome-api
+	go build -o awesome-api
 
-## Stop : the application with the command kill
-stop: 
-	@pkill awesome-api
+run: ## Run awesome-api application
+	./awesome-api >./awesome-api.log 2>&1 &
 
-## clean: Cleans up the build directory
-clean:
-	@rm -rf dist/*
-	@rm -f awesome-api awesome-api.log
-	@pkill awesome-api
+stop: ## Stop awesome-api application
+	kill $$(pgrep awesome-api) || true
 
-## test: Ensure that it behaves as expected
-test: 
-	@echo "# Test 1:"
-	@if curl  http://localhost:9999 ; then \
-		echo "TESTOK"; \
-	else \
-		echo "TESTFAILED"; \
-	fi
-	@echo "# Test 2:"
-	@if curl  http://localhost:9999/health ; then \
-		echo "TESTOK"; \
-	else \
-		echo "TESTFAILED"; \
-	fi
+clean: stop ## Clean awesome-api application and log
+	rm -f awesome-api awesome-api.log
 
-## post : POST_NAME=<post-name> POST_TITLE=<post-title>: Creates a new blog post with the specified name and title
-post:
-	hugo new posts/$(POST_NAME).md
-	sed -i 's/title: .*/title: "$(POST_TITLE)"/' content/posts/$(POST_NAME).md
+test: ## Test current connection
+	@curl http://localhost:9999
+	@curl http://localhost:9999/health
 
-## lint: Catch such errors without the need to compile or execute the application
-lint: 
-	@golangci-lint run 
-## Run tests to check for HelloHandler coverage
-unit-tests: 
+unit-tests: ## Run tests to check for HelloHandler coverage
 	go test -v -short -coverprofile=coverage-units.out
 
-## help : Help about any command
-help:
-	@cat Makefile | grep "^#" | sed 's/^## \(.*\)/\1\n/'
+.SILENT:
+help: ## Display what each command does
+	cat Makefile | grep '##' | tr -d '##' | head -n -1
 
