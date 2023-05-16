@@ -33,8 +33,7 @@ check: ## Check markdown files
 	markdown-link-check ./content/posts/*.md
 
 validate: ## Validate HTML with W3C Validator
-	make build
-	python3 /home/uoch/W3C-Validator/w3c_validator.py dist/index.html
+	find / -name w3c_validator.py 2>/dev/null
 
 .SILENT:
 help: ## Display what each command does
