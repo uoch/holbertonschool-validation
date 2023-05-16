@@ -25,8 +25,9 @@ test: ## Test current connection
 
 unit-tests: ## Run tests to check for HelloHandler coverage
 	go test -v -short -coverprofile=coverage-units.out
-
+	go test -v -coverprofile=coverage-integrations.out
 integration-tests: ## Run tests to check integrations coverage
+	go test -v -short -coverprofile=coverage-units.out
 	go test -v -coverprofile=coverage-integrations.out
 check: ## Check markdown files
 	markdownlint ./content/posts/*.md
