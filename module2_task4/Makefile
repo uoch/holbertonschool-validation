@@ -1,7 +1,7 @@
 lint: ## lint
 	golangci-lint run ./main.go
 
-build: lint ## Build awesome-api
+build: check ## Build awesome-api
 	go build -o awesome-api
 
 run: ## Run awesome-api application
