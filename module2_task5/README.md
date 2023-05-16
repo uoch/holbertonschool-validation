@@ -13,6 +13,7 @@
 - `integration-tests`: run tests to check for integration coverage
 - `check`: Check markdown files exist in the /content/*
 - `validate`: Validate html format
+- `post`: Create a new blog post
 
 ## Requirements:
 - A Makefile should be present and valid.
