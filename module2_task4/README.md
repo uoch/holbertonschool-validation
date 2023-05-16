@@ -12,7 +12,7 @@
 - `unit-tests`: run tests to check for validation and HelloHandler coverage
 - `integration-tests`: run tests to check for integration coverage
 - `check`: Check markdown files exist in the /content/*
-- `check`: Validate html format
+- `validate`: Validate html format
 
 ## Requirements:
 - A Makefile should be present and valid.
