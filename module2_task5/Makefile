@@ -35,7 +35,6 @@ validate: ## Validate HTML with W3C Validator
 	make build
 	python3 /opt/W3C-Validator/w3c_validator.py dist/index.html
 go-build:	## Build API library
-	go get github.com/gorilla/mux
 	go build
 
 hugo-build: check ## Build go hugo website
