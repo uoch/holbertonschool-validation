@@ -1,0 +1,23 @@
+---
+name: module3_task1
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  builds:
+    # name of job
+    name: first job
+    # env of execution
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Execute the script setup.sh
+        run: ./setup.sh
+        working-directory: module3_task1
+      - name: Validate Makefile execution make help command
+        run: make build
+        working-directory: module3_task1
