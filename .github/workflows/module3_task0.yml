@@ -7,15 +7,14 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-22.04
+  builds:
+    # name of job
+    name: first job
+    # env of execution
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install make
-        run: sudo apt-get update && sudo apt-get install -y make
-
-      - name: Run make help
+      - uses: actions/checkout@v3
+      - name: Validate Makefile execution make help command
         run: make help
+        working-directory: module3_task0
