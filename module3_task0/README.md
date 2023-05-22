@@ -20,3 +20,12 @@
 - The binary `awesome-api` must NOT exist at the beginning, in the source code.
 - The goals `build`, `run`, `stop`, `clean`, and `test` should be implemented and mapped to the life-cycle stages of the same name.
 - The `help` goal must be implemented and print a list of all the goals with a sentence each.
+## Workflow
+
+* Workflow module3_task 0 : 
+-> Clone the repository,
+-> Use ubuntu-22.04 as the virtual machine.
+-> Position yourself in the correct directory and execute the command make help to validate that the Makefile is present and implements the help target.
+-> This workflow must be triggered:
+		Each time there is new code pushed on your repository,
+		And once per day (whatever time you want).
