@@ -13,7 +13,7 @@ jobs:
     # name of job
     name: first job
     # env of execution
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
@@ -21,5 +21,10 @@ jobs:
         run: ./setup.sh
         working-directory: module3_task1
       - name: Validate Makefile execution make help command
-        run: make build
+        run: |
+          make help
+          make build
+          make run
+          make stop
+          make clean
         working-directory: module3_task1
