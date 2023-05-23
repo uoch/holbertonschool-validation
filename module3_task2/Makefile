@@ -34,7 +34,6 @@ check: ## Check markdown files
 validate: ## Validate HTML  W3C Validator
 	make build
 	git clone https://github.com/holbertonschool/W3C-Validator.git
-	python3 W3C-Validator/w3c_validator.py dist/index.html
 
 package: ## Produce awesome-website.zip containing awesome-api and dist directory
 	zip -FSr awesome-website.zip . -i dist/ awesome-api
