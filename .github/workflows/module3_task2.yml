@@ -28,6 +28,7 @@ jobs:
           make run
           make unit-tests
           make integration-tests
+          make validate
           make stop
           make clean
         working-directory: module3_task2
