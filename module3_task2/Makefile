@@ -31,7 +31,7 @@ check: ## Check markdown files
 	markdownlint ./content/posts/*.md
 	markdown-link-check ./content/posts/*.md
 
-validate: ## Validate HTML with W3C Validator
+validate: ## Validate HTML  W3C Validator
 	make build
 	python3 /opt/W3C-Validator/w3c_validator.py dist/index.html
 
