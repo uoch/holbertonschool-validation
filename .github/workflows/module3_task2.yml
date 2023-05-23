@@ -27,6 +27,7 @@ jobs:
           make lint
           make run
           make unit-tests
+          make integration-tests
           make stop
           make clean
         working-directory: module3_task2
