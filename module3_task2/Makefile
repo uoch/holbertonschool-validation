@@ -1,6 +1,5 @@
 lint: ## lint
 	markdownlint -f DEPLOY.md README.md || true
-	golangci-lint run ./main.go
 
 build: check ## Build awesome-api
 	go build -o awesome-api

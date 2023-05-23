@@ -33,6 +33,7 @@ jobs:
         run: make package
         working-directory: module3_task2
       - name: archieve ZIP file artifac
+        if: ${{github.ref=='refs/heads/main'}}
         uses: actions/upload-artifact@v3
         with:
           name: Saving the zip file
