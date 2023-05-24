@@ -49,12 +49,18 @@ jobs:
         with:
           tag_name: 1.0.0
           draft: true
-          notes: |
-            This is a new release with some improvements and bug fixes.
-            Please refer to the release notes for more details.
+      - name: Check Release after creating
+        run: |
+          if gh release view 1.0.0 &> /dev/null; then
+            echo "Release already exists"
+            echo "::set-output name=exists::true"
+          else
+            echo "Release does not exist"
+            echo "::set-output name=exists::false"
+          fi
       - name: Attach Archive
         if: always()
         run: |
-          gh release upload 1.0.0 module3_task3/awesome-website.zip --clobber
+          gh release create 1.0.0 ./module3_task3/awesome-website.zip --notes "Release Notes for version 1.0.0" --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
