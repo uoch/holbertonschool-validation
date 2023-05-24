@@ -46,9 +46,16 @@ jobs:
         with:
           tag_name: 1.0.0
           draft: true
+      - name: Check Release Existence
+        run: |
+            if gh release view 1.0.0 &> /dev/null; then
+              echo "Release already exists"
+            else
+              echo "Release does not exist"
+            fi
       - name: Attach Archive
         if: always()
         run: |
-          gh release upload refs/tags/1.0.0 module3_task3/awesome-website.zip        
+          gh release upload 1.0.0 module3_task3/awesome-website.zip        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
