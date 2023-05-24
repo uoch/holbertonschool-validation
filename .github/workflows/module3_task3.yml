@@ -33,29 +33,34 @@ jobs:
       - name: Package artifact
         run: make package
         working-directory: module3_task3
-      - name: archieve ZIP file artifac
-        if: ${{github.ref=='refs/heads/main'}}
-        uses: actions/upload-artifact@v3
-        with:
-          name: Saving the zip file
-          path: |
-            module3_task3/awesome-website.zip
+      - name: Check Release Existence
+        id: check_release
+        run: |
+          if gh release view 1.0.0 &> /dev/null; then
+            echo "Release already exists"
+            echo "::set-output name=exists::true"
+          else
+            echo "Release does not exist"
+            echo "::set-output name=exists::false"
+          fi
       - name: Create Release
-        if: github.ref == 'refs/tags/1.0.0' 
+        if: steps.check_release.outputs.exists == 'false'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: 1.0.0
           draft: true
-      - name: Check Release Existence
+      - name: Check Release after creating
         run: |
-            if gh release view 1.0.0 &> /dev/null; then
-              echo "Release already exists"
-            else
-              echo "Release does not exist"
-            fi
+          if gh release view 1.0.0 &> /dev/null; then
+            echo "Release already exists"
+            echo "::set-output name=exists::true"
+          else
+            echo "Release does not exist"
+            echo "::set-output name=exists::false"
+          fi
       - name: Attach Archive
         if: always()
         run: |
-          gh release upload 1.0.0 module3_task3/awesome-website.zip        
+          gh release upload 1.0.0 module3_task3/awesome-website.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
