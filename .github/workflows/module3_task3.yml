@@ -39,7 +39,7 @@ jobs:
         with:
           name: Saving the zip file
           path: |
-            module3_task2/awesome-website.zip
+            module3_task3/awesome-website.zip
       - name: Create Release
         if: github.ref == 'refs/tags/1.0.0' 
         uses: softprops/action-gh-release@v1
@@ -49,6 +49,6 @@ jobs:
       - name: Attach Archive
         if: always()
         run: |
-          gh release upload ${{ github.ref }} module3_task3/awesome-website.zip        
+          gh release upload refs/tags/1.0.0 module3_task3/awesome-website.zip        
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
