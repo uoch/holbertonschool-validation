@@ -57,7 +57,7 @@ jobs:
       - name: Check release status
         run: |
           if [[ -n "${{ steps.create_release.outputs.id }}" ]]; then
-            echo "There is a release 1.0.0,  associated to an action build."
+            echo "there is a release 1.0.0,  associated to an action build."
           else
             echo "Release creation failed."
           fi
