@@ -8,7 +8,7 @@ build: check ## Build awesome-api
 run: ## Run awesome-api application
 	./awesome-api >./awesome-api.log 2>&1 &
 
-stop: ## Stop awesome-api application
+stop: ## stop awesome-api application
 	pkill awesome-api || true
 
 clean: stop ## Clean awesome-api application and log
