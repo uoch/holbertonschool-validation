@@ -61,7 +61,4 @@ jobs:
           else
             echo "Release creation failed."
           fi
-      - name: Verify release artifacts
-        run: |
-          gh release view 1.0.0
-          ls -al
+
