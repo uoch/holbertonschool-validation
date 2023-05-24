@@ -53,4 +53,4 @@ jobs:
           gh release upload 1.0.0 module3_task3/awesome-website.zip
         env:
           GH_TOKEN: ${{ secrets.GH_TOKENN }}
-        needs: create_release
+          needs: create_release
