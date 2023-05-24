@@ -9,8 +9,7 @@ on:
   release:
     types:
       - created
-env:
-  GH_TOKEN: ${{ secrets.PLEASE }}
+
 jobs:
   create_release:
     name: Create Release
@@ -58,6 +57,6 @@ jobs:
       - name: Attach Archive
         if: always()
         run: |
-          echo ${{ secrets.PLEASE }}
           gh release upload 1.0.0 module3_task3/awesome-website.zip
-        
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
