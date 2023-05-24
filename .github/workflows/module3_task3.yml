@@ -61,6 +61,6 @@ jobs:
       - name: Attach Archive
         if: always()
         run: |
-         gh release edit 1.0.0 ./module3_task3/awesome-website.zip --notes "Release Notes for version 1.0.0" 
+         gh release edit 1.0.0 --notes "Release Notes for version 1.0.0" 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
