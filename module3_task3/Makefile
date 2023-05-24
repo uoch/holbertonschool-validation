@@ -37,6 +37,10 @@ validate: ## Validate HTML  W3C Validator
 
 package: ## Produce awesome-website.zip containing awesome-api and dist directory
 	zip -FSr awesome-website.zip . -i dist/ awesome-api
+	@if [ ! -f "awesome-website.zip" ]; then \
+		echo "Failed to generate awesome-website.zip"; \
+		exit 1; \
+	fi
 
 .SILENT:
 help: ## Display what each command does
