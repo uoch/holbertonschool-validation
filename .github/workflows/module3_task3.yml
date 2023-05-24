@@ -45,5 +45,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            module3_task3/DEPLOY.md
             module3_task3/awesome-website.zip
+            module3_task3/DEPLOY.md
+            
+            
