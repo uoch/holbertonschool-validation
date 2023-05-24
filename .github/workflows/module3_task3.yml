@@ -41,7 +41,7 @@ jobs:
           path: |
             module3_task2/awesome-website.zip
       - name: Create Release
-        if: github.ref != 'refs/tags/1.0.0' 
+        if: github.ref == 'refs/tags/1.0.0' 
         uses: softprops/action-gh-release@v1
         with:
           tag_name: 1.0.0
