@@ -31,15 +31,15 @@ jobs:
           make validate
           make stop
           make clean
-        working-directory: module3_task2
+        working-directory: module3_task3
       - name: Package artifact
         run: make package
-        working-directory: module3_task2
+        working-directory: module3_task3
       - name: Archive ZIP file artifact
         if: ${{ github.ref == 'refs/tags/*' }}
         run: |
           mkdir -p artifacts
-          mv module3_task2/awesome-website.zip artifacts/
+          mv module3_task3/awesome-website.zip artifacts/
         working-directory: ${{ github.workspace }}
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/1.0.0')
