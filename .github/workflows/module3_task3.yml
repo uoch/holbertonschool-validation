@@ -33,13 +33,17 @@ jobs:
       - name: Package artifact
         run: make package
         working-directory: module3_task3
-      - name: archieve ZIP file artifac
-        if: ${{github.ref=='refs/heads/main'}}
+      - name: Archive ZIP file artifact
+        if: ${{ github.ref != 'refs/tags/1.0.0' }}
         uses: actions/upload-artifact@v3
         with:
           name: Saving the zip file
           path: |
             module3_task3/awesome-website.zip
+      - name: Clean up after packaging
+        run: |
+          make stop
+          make clean
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/1.0.0')
         uses: softprops/action-gh-release@v1
