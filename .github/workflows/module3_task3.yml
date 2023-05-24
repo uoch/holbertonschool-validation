@@ -35,23 +35,17 @@ jobs:
       - name: Package artifact
         run: make package
         working-directory: module3_task3
-      - name: Archive ZIP file artifact
-        if: ${{ github.ref == 'refs/tags/*' }}
-        run: |
-          mkdir -p artifacts
-          mv module3_task3/awesome-website.zip artifacts/
-        working-directory: ${{ github.workspace }}
+      - name: archieve ZIP file artifac
+        if: ${{github.ref=='refs/heads/main'}}
+        uses: actions/upload-artifact@v3
+        with:
+          name: Saving the zip file
+          path: |
+            module3_task3/awesome-website.zip
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/1.0.0')
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            artifacts/awesome-website.zip
             module3_task3/DEPLOY.md
-          body: |
-            $(cat module3_task3/DEPLOY.md)
-          tag_name: ${{ github.ref }}
-      - name: View Release
-        run: gh release view 1.0.0
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            module3_task3/awesome-website.zip
