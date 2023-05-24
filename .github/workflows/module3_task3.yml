@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Execute setup.sh
         run: ./setup.sh
-        working-directory: module3_task2
+        working-directory: module3_task3
       - name: Validate Makefile execution
         run: |
           make help
@@ -42,7 +42,6 @@ jobs:
             module3_task3/awesome-website.zip
       - name: Clean up after packaging
         run: |
-          make stop
           make clean
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/1.0.0')
