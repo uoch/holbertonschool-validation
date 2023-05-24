@@ -6,18 +6,21 @@ on:
       - main
   schedule:
     - cron: '0 0 * * *'  # Runs at 12:00 AM UTC every day
+  release:
+    types:
+      - created
 
 jobs:
-  builds:
-    name: first job
+  build:
+    name: Build job
     runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
-      - name: Execute the script setup.sh
+      - name: Execute setup.sh
         run: ./setup.sh
         working-directory: module3_task2
-      - name: Validate Makefile execution make help command
+      - name: Validate Makefile execution
         run: |
           make help
           make build
@@ -28,36 +31,27 @@ jobs:
           make validate
           make stop
           make clean
-        working-directory: module3_task3
-      - name: packaging
+        working-directory: module3_task2
+      - name: Package artifact
         run: make package
-        working-directory: module3_task3
-      - name: archieve ZIP file artifac
-        if: ${{ github.ref == 'refs/heads/main' }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: Saving the zip file
-          path: module3_task2/awesome-website.zip
-      - name: construct Release.txt
-        run: cat ./module3_task3/DEPLOY.md >> Release.txt
-      - name: release
-        id: create_release
-        uses: softprops/action-gh-release@v1
+        working-directory: module3_task2
+      - name: Archive ZIP file artifact
+        if: ${{ github.ref == 'refs/tags/*' }}
+        run: |
+          mkdir -p artifacts
+          mv module3_task2/awesome-website.zip artifacts/
+        working-directory: ${{ github.workspace }}
+      - name: Create Release
         if: startsWith(github.ref, 'refs/tags/1.0.0')
+        uses: softprops/action-gh-release@v1
         with:
           files: |
-            awesome-website.zip
-            DEPLOY.md
+            artifacts/awesome-website.zip
+            module3_task3/DEPLOY.md
           body: |
-            ## What is in the archive and how to unarchive it?
-            ## What are the commands to start and stop the application?
-            ## How to customize where the application logs are written?
-            ## How to “quickly” verify that the application is running?
-            ## Create a release with the archive triggered by a tag
-      - name: Check release status
-        run: |
-          if [[ -n "${{ steps.create_release.outputs.id }}" ]]; then
-            echo "there is a release 1.0.0,  associated to an action build."
-          else
-            echo "Release creation failed."
-          fi
+            $(cat module3_task3/DEPLOY.md)
+          tag_name: ${{ github.ref }}
+      - name: View Release
+        run: gh release view 1.0.0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
