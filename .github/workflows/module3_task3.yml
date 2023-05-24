@@ -48,7 +48,7 @@ jobs:
             module3_task3/awesome-website.zip
             module3_task3/DEPLOY.md
       - name: Attach Archive
-        env:
-          GH_TOKEN: ${{ github.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 }}
         run: |
-          gh release upload 1.0.0 module3_task3/awesome-website.zip 
+          gh release upload 1.0.0 module3_task3/awesome-website.zip
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
