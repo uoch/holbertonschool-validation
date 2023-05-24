@@ -11,7 +11,8 @@ run: ## Run awesome-api application
 stop: ## Stop awesome-api application
 	pkill awesome-api || true
 
-clean: stop ## Clean awesome-api application and log
+clean: ## Clean awesome-api application and log
+	pkill awesome-api || true
 	rm -f awesome-api awesome-api.log coverage-units.out coverage-integrations.out
 	rm -rf ./dist
 post: ## Create a new blog post
