@@ -55,6 +55,6 @@ jobs:
       - name: Attach Archive
         if: always()
         run: |
-          gh release upload 1.0.0/module3_task3/awesome-website.zip --clobber
+          gh release upload 1.0.0 module3_task3/awesome-website.zip --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
