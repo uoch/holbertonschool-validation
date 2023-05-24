@@ -29,8 +29,6 @@ jobs:
           make unit-tests
           make integration-tests
           make validate
-          make stop
-          make clean
         working-directory: module3_task3
       - name: Package artifact
         run: make package
