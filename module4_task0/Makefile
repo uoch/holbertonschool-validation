@@ -2,6 +2,7 @@ lint: ## lint
 	markdownlint -f DEPLOY.md README.md || true
 
 build: check ## Build awesome-api
+	go build -o awesome-api
 	hugo -d dist/
 
 run: ## Run awesome-api application

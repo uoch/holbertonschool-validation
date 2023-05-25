@@ -12,5 +12,7 @@ To **STOP** the application : ```make stop```
 ## How to customize where the application logs are written?
 
 As default logs are written in ```awesome-api.log``` file. If you want change this localisation use this command : ```make run > [Path/File_name].log 2>&1```
+
 ## Release
+
 A Github Release is created with the ```tag 1.0.0``` and contain archive awesome-website.zip + content of the file DEPLOY.md as text for the release.

@@ -1,6 +1,6 @@
 # Prerequisites
 
-- Golang should be installed in the environment 
+- Golang should be installed in the environment
 - Basic understanding of Makefile and command-line interface.
 
 ## Project Lifecycle
