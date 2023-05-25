@@ -1,5 +1,5 @@
 #!/bin/bash
-
+rm -rf /usr/local/go
 sudo apt-get update && sudo apt-get install -y make git
 
 # download/install minimal version to use template ananke
@@ -9,6 +9,6 @@ sudo apt install ./hugo.deb
 sudo rm hugo.deb
 
 # download/install linter
-sudo go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2
+
 sudo npm install -g markdownlint-cli
 sudo npm install -g markdown-link-check
