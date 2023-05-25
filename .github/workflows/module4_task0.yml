@@ -31,14 +31,18 @@ jobs:
           make unit-tests
           make integration-tests
           make validate
-        working-directory: module3_task3
+        working-directory: module4_task0
+      - name: Package artifact
+        run: make package
+      - name: clean
+        run: make clean
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: 1.0.1
           files: |
-                module3_task4/awesome-website.zip
-                module3_task4/DEPLOY.md
+                module4_task0/awesome-website.zip
+                module4_task0/DEPLOY.md
       - name: archive build
         if: ${{ success()}}
         uses: actions/upload-artifact@v3
