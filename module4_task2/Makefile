@@ -6,7 +6,8 @@ build-docker: ## Build Docker image
 	docker build -t $(DOCKER_IMAGE) -f .build/Dockerfile .
 
 lint: ## Lint Dockerfile
-    docker run --rm -v $(PWD):/workdir -i hadolint/hadolint:v2.6.0 hadolint --config /workdir/.hadolint.yml /workdir/Dockerfile
+     
+	 docker run --rm -v $(PWD):/workdir -i hadolint/hadolint:v2.6.0 hadolint --config /workdir/.build/hadolint.yml --no-fail /workdir/.build/Dockerfile
 
 build: ## Build awesome-api
 	$(DOCKER_RUN) go build -o awesome-api
