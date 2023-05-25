@@ -32,6 +32,7 @@ jobs:
           make integration-tests
           make validate
           make package
+          make docker-tests
         working-directory: module4_task0
       - name: clean
         run: make clean
