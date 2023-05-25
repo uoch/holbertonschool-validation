@@ -1,7 +1,7 @@
 lint: ## lint
 	markdownlint -f DEPLOY.md README.md || true
 
-build: check ## Build awesome-api
+build:  ## Build awesome-api
 	hugo -d dist/
 
 run: ## Run awesome-api application
@@ -28,6 +28,7 @@ unit-tests: ## Run tests to check for HelloHandler coverage
 integration-tests: ## Run tests to check integrations coverage
 	go test -v -coverprofile=coverage-integrations.out
 check: ## Check markdown files
+
 	markdownlint ./content/posts/*.md
 	markdown-link-check ./content/posts/*.md
 
