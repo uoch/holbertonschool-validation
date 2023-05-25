@@ -36,6 +36,7 @@ jobs:
         run: make package
       - name: clean
         run: make clean
+        working-directory: module4_task0
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
