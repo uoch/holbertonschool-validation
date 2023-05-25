@@ -1,8 +1,10 @@
+DOCKER_RUN = docker run --rm -v $(PWD):/app -w /app golang:1.15.8-buster
+
 lint: ## lint
-	markdownlint -f DEPLOY.md README.md || true
+	$(DOCKER_RUN) markdownlint -f DEPLOY.md README.md || true
 
 build:  ## Build awesome-api
-	go build -o awesome-api
+	$(DOCKER_RUN) go build -o awesome-api
 	hugo -d dist/
 
 run: ## Run awesome-api application
@@ -15,6 +17,7 @@ clean: ## Clean awesome-api application and log
 	pkill awesome-api || true
 	rm -f awesome-api awesome-api.log coverage-units.out coverage-integrations.out
 	rm -rf ./dist
+
 post: ## Create a new blog post
 	hugo new posts/$(POST_NAME).md
 	sed -i 's/title: .*/title: "$(POST_TITLE)"/' content/posts/$(POST_NAME).md
@@ -24,14 +27,14 @@ test: ## Test current connection
 	make integration-tests
 
 unit-tests: ## Run tests to check for HelloHandler coverage
-	go test -v -short -coverprofile=coverage-units.out
+	$(DOCKER_RUN) go test -v -short -coverprofile=coverage-units.out
 
 integration-tests: ## Run tests to check integrations coverage
-	go test -v -coverprofile=coverage-integrations.out
-check: ## Check markdown files
+	$(DOCKER_RUN) go test -v -coverprofile=coverage-integrations.out
 
-	markdownlint ./content/posts/*.md
-	markdown-link-check ./content/posts/*.md
+check: ## Check markdown files
+	$(DOCKER_RUN) markdownlint ./content/posts/*.md
+	$(DOCKER_RUN) markdown-link-check ./content/posts/*.md
 
 validate: ## Validate HTML  W3C Validator
 	make build
@@ -47,4 +50,3 @@ package: ## Produce awesome-website.zip containing awesome-api and dist director
 .SILENT:
 help: ## Display what each command does
 	cat Makefile | grep '##' | tr -d '##' | head -n -1
-
