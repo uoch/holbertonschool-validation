@@ -1,5 +1,5 @@
 ---
-name: module4_task1
+name: module4_task2
 
 on:
   push:
@@ -33,10 +33,10 @@ jobs:
           make validate
           make package
           make docker-tests
-        working-directory: module4_task0
+        working-directory: module4_task2
       - name: clean
         run: make clean
-        working-directory: module4_task0
+        working-directory: module4_task2
       - name: Release
         uses: softprops/action-gh-release@v1
         with:

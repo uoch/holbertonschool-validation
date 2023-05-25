@@ -52,7 +52,7 @@ package: ## Produce awesome-website.zip containing awesome-api and dist director
 		exit 1; \
 	fi
 
-docker-tests: ## Run tests with container-structure-test
+docker-tests: ## Run test with container-structure-test
 	docker run --rm -v $(PWD):/tests -w /tests gcr.io/gcp-runtimes/container-structure-test:v1.10.0 test --image $(DOCKER_IMAGE) --config .build/cst.yml
 
 .SILENT:
