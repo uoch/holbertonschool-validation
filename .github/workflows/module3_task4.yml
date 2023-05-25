@@ -1,66 +1,56 @@
-name: module3_task3
-
-on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: '0 0 * * *'  # Runs at 12:00 AM UTC every day
-  release:
-    types:
-      - created
-
-jobs:
-  build:
-    name: Build job
-    runs-on: ubuntu-22.04
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Execute setup.sh
-        run: ./setup.sh
-        working-directory: module3_task3
-      - name: Validate Makefile execution
-        run: |
-          make help
-          make build
-          make lint
-          make run
-          make unit-tests
-          make integration-tests
-          make validate
-        working-directory: module3_task3
-      - name: Package artifact
-        run: make package
-        working-directory: module3_task3
-      - name: Check Release Existence
-        id: check_release
-        run: |
-          if gh release view 1.0.0 &> /dev/null; then
-            echo "Release already exists"
-            echo "::set-output name=exists::true"
-          else
-            echo "Release does not exist"
-            echo "::set-output name=exists::false"
-          fi
-      - name: Create Release
-        if: steps.check_release.outputs.exists == 'false'
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: 1.0.0
-          draft: true
-      - name: Check Release after creating
-        run: |
-          if gh release view 1.0.0 &> /dev/null; then
-            echo "Release already exists"
-            echo "::set-output name=exists::true"
-          else
-            echo "Release does not exist"
-            echo "::set-output name=exists::false"
-          fi
-      - name: Attach Archive
-        if: always()
-        run: |
-          gh release edit 1.0.0 --notes "Release Notes for version 1.0.0"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+---
+    name: module3_task4
+    on:
+      push:
+        branches:
+          - main
+          - master
+      # https://www.freeformatter.com/cron-expression-generator-quartz.html
+      schedule:
+        - cron: "0 0 * * *"
+      # https://frontside.com/blog/2020-05-26-github-actions-pull_request/
+      pull_request:
+        types: [opened, reopened, edited, ready_for_review]
+    jobs:
+      module3_task0:
+        runs-on: ubuntu-18.04
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v3
+          - name: Setup Hugo
+            run: |
+              cd module3_task4/
+              sudo ./setup.sh
+          - name: lint
+            run: |
+              cd module3_task4/
+              make lint
+          - name: build
+            run: |
+              cd module3_task4/
+              make build
+          - name: post
+            run: |
+              cd module3_task4/
+              make POST_TITLE="Test Title" POST_NAME="Test-name" post
+          - name: Integration tests
+            run: |
+              cd module3_task4/
+              make integration-tests
+              make validate
+              make unit-tests
+              make package
+              echo ${{github.ref}}
+          - name: Release
+            uses: softprops/action-gh-release@v1
+            with:
+              tag_name: 1.0.1
+              files: |
+                module3_task4/awesome-website.zip
+                module3_task4/DEPLOY.md
+          - name: archive build
+            if: ${{ success()}}
+            uses: actions/upload-artifact@v3
+            with:
+              name: upload-package
+              path: module3_task4/awesome-website.zip
