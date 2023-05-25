@@ -31,9 +31,8 @@ jobs:
           make unit-tests
           make integration-tests
           make validate
+          make package
         working-directory: module4_task0
-      - name: Package artifact
-        run: make package
       - name: clean
         run: make clean
         working-directory: module4_task0
