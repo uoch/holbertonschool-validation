@@ -1,6 +1,7 @@
-# hadolint configuration
 ignore:
   - DL3008  # Allow apt-get update without apt-get upgrade
   - DL3009  # Allow apt-get upgrade without apt-get update
   - DL3015  # Allow apt-get autoremove without apt-get clean
-
+  - DL3018  # Allow apt-get autoremove without apt-get clean
+  - DL4006  # Allow not setting SHELL option -o pipefail
+  - DL4001  # Allow using both Wget and Curl
