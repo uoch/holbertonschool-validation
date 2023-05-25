@@ -25,6 +25,7 @@ jobs:
       - name: Validate Makefile execution
         run: |
           make help
+          build-docker
           make build
           make lint
           make run
