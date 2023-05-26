@@ -31,6 +31,7 @@ jobs:
           make build-docker
           docker images
           sudo systemctl start docker
+          sudo chmod 666 /var/run/docker.sock
           make docker-tests
           make build
           make lint
