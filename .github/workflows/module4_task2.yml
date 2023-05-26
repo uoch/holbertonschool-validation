@@ -30,6 +30,7 @@ jobs:
           make help
           make build-docker
           docker images
+          systemctl start docker
           make docker-tests
           make build
           make lint
