@@ -23,6 +23,8 @@ RUN apk add --no-cache --virtual .build-deps wget && \
 
 # Install build dependencies
 RUN apk add --no-cache build-base
+RUN apk add --no-cache zip
+
 
 # Set working directory
 WORKDIR /app
