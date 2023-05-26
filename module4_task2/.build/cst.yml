@@ -1,15 +1,9 @@
-schemaVersion: "1.15.0"
+schemaVersion: "2.0.0"
 tests:
-  - name: Dockerfile linting
+  - name: "Test Dockerfile"
     structureTests:
-      - test: hadolint
-        flags: ["--no-fail"]
-      - test: hadolint-entrypoint
-      - test: hadolint-cmd
-  - name: Docker image tests
-    imageTests:
-      - test: metadata
       - test: existence
-      - test: content
-      - test: entrypoint
-      - test: cmd
+        existence:
+          files:
+            - "/app/awesome-api"
+            - "/app/dist"
