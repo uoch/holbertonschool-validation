@@ -13,7 +13,7 @@ ENV HADOLINT_VERSION=2.6.0
 
 # Install build dependencies
 RUN apk add --no-cache \
-    curl \
+    curl= 7.79.1-r3 \
     build-base=0.5-r3 \
     zip=3.0-r9 \
     && curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /usr/local/bin "v${GOLANGCI_LINT_VERSION}" \
