@@ -6,5 +6,3 @@ sudo apt-get install ./install_hugo.deb
 sudo apt update
 sudo apt install build-essential
 sudo apt-get install gcc
-export PATH=$PATH:/usr/local/go/bin:/usr/bin/gcc
-which gcc

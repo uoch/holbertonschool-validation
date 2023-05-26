@@ -20,7 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup Hugo
-        run: ./setup.sh
+        run: |
+          ./setup.sh
+          export PATH="$PATH:/usr/bin/gcc"
+          echo "Updated PATH: $PATH"
         working-directory: module3_task3
       - name: Validate Makefile execution
         run: |
