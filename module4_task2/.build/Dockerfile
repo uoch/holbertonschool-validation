@@ -7,31 +7,27 @@ RUN apk add --no-cache curl && \
 
 # Install Hugo
 ENV HUGO_VERSION=0.88.1
-RUN apk add --no-cache wget && \
-    wget -qO hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz && \
+RUN apk add --no-cache curl && \
+    curl -sSfL -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz && \
     tar -xf hugo.tar.gz -C /tmp/ && \
     mv /tmp/hugo /usr/local/bin/hugo && \
     rm -rf hugo.tar.gz
 
 # Install Hadolint
 ENV HADOLINT_VERSION=2.6.0
-RUN apk add --no-cache --virtual .build-deps wget && \
-    wget -qO hadolint "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64" && \
+RUN apk add --no-cache curl && \
+    curl -sSfL -o hadolint "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64" && \
     chmod +x hadolint && \
-    mv hadolint /usr/local/bin/ && \
-    apk del .build-deps
+    mv hadolint /usr/local/bin/
 
 # Install build dependencies
-RUN apk add --no-cache build-base
-RUN apk add --no-cache zip
+RUN apk add --no-cache build-base=0.5-r2
+RUN apk add --no-cache zip=3.0-r11
 
 # Install container-structure-test
 RUN curl -LO https://storage.googleapis.com/container-structure-test/v1.10.0/container-structure-test-linux-amd64 \
     && chmod +x container-structure-test-linux-amd64 \
-    && mkdir -p $HOME/bin \
-    && export PATH=$PATH:$HOME/bin \
-    && mv container-structure-test-linux-amd64 $HOME/bin/container-structure-test
-
+    && mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
 
 # Set working directory
 WORKDIR /app
