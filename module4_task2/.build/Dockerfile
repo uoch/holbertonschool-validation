@@ -26,8 +26,11 @@ RUN apk add --no-cache build-base
 RUN apk add --no-cache zip
 
 # Install container-structure-test
-ENV CONTAINER_STRUCTURE_TEST_VERSION=1.15.0
-RUN wget -qO- "https://github.com/GoogleContainerTools/container-structure-test/releases/download/v${CONTAINER_STRUCTURE_TEST_VERSION}/container-structure-test-linux-amd64.tar.gz" | tar xvz -C /usr/local/bin
+RUN curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 \
+    && chmod +x container-structure-test-linux-amd64 \
+    && mkdir -p $HOME/bin \
+    && export PATH=$PATH:$HOME/bin \
+    && mv container-structure-test-linux-amd64 $HOME/bin/container-structure-test
 
 
 # Set working directory
