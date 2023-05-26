@@ -6,8 +6,7 @@ build-docker: ## Build Docker image
 	docker build -t $(DOCKER_IMAGE) -f .build/Dockerfile .
 
 lint: ## Lint Dockerfile
-     
-	 docker run --rm -v $(PWD):/workdir -i hadolint/hadolint:v2.6.0 hadolint --config /workdir/.build/hadolint.yml --no-fail /workdir/.build/Dockerfile
+	docker run --rm -v $(PWD):/workdir -i hadolint/hadolint:v2.6.0 hadolint --config /workdir/.build/hadolint.yml --no-fail /workdir/.build/Dockerfile
 
 build: ## Build awesome-api
 	$(DOCKER_RUN) go build -o awesome-api
@@ -53,7 +52,7 @@ package: ## Produce awesome-website.zip containing awesome-api and dist director
 		exit 1; \
 	fi
 
-docker-tests: ## Run test with container-structure-test
+docker-tests: ## Run tests with container-structure-test
 	docker run --rm -v $(PWD):/tests -w /tests gcr.io/gcp-runtimes/container-structure-test:v1.10.0 test --image $(DOCKER_IMAGE) --config .build/cst.yml
 
 .SILENT:
