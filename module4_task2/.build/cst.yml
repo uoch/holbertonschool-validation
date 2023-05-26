@@ -1,9 +1,10 @@
 schemaVersion: "2.0.0"
 tests:
-  - name: "Test Dockerfile"
+  - name: Docker image tests
     structureTests:
+      - test: metadata
       - test: existence
-        existence:
-          files:
-            - "/app/awesome-api"
-            - "/app/dist"
+      - test: content
+      - test: entrypoint
+      - test: cmd
+
