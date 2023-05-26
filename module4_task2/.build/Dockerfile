@@ -14,8 +14,8 @@ ENV HADOLINT_VERSION=2.6.0
 # Install build dependencies
 RUN apk add --no-cache \
     curl \
-    build-base \
-    zip \
+    build-base=0.5-r3 \
+    zip=3.0-r9 \
     && curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /usr/local/bin "v${GOLANGCI_LINT_VERSION}" \
     && curl -sSfL -o hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz \
     && tar -xf hugo.tar.gz -C /tmp/ \

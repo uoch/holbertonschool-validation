@@ -35,8 +35,8 @@ jobs:
           which gcc
           make unit-tests
           make integration-tests
-          make clean
           make package
+          make clean
           make docker-tests
         working-directory: module4_task2
       - name: clean
