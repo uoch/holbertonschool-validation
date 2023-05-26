@@ -24,7 +24,7 @@ jobs:
           ./setup.sh
           export PATH="$PATH:/usr/bin/gcc"
           echo "Updated PATH: $PATH"
-        working-directory: module3_task3
+        working-directory: module4_task2
       - name: Validate Makefile execution
         run: |
           make help
