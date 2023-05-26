@@ -29,6 +29,7 @@ jobs:
           make build
           make lint
           make run
+          which gcc
           make unit-tests
           make integration-tests
           make validate
