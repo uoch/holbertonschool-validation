@@ -17,6 +17,7 @@
 - `validate`: Validate html format
 - `post`: Create a new blog post
 - `build-docker `: Build Docker image
+- `build-docker `: Run tests with container-structure-test
 
 ## Requirements
 
