@@ -30,8 +30,9 @@ jobs:
           make help
           make build-docker
           docker images
-          sudo systemctl start docker
+          sudo systemctl restart docker
           sudo chmod 777 /var/run/docker.sock
+          ls -l /var/run/docker.sock
           make docker-tests
           make build
           make lint
