@@ -16,7 +16,7 @@
 - `check`: Check markdown files exist in the /content/*
 - `validate`: Validate html format
 - `post`: Create a new blog post
-- `docker-tests`: Build Docker image
+- `build-docker `: Build Docker image
 
 ## Requirements
 
