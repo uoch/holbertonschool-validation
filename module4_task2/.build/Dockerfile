@@ -21,6 +21,9 @@ RUN apk add --no-cache --virtual .build-deps wget && \
     mv hadolint /usr/local/bin/ && \
     apk del .build-deps
 
+# Install build dependencies
+RUN apk add --no-cache build-base
+
 # Set working directory
 WORKDIR /app
 
