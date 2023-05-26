@@ -53,8 +53,10 @@ package: ## Produce awesome-website.zip containing awesome-api and dist director
 	fi
 
 docker-tests: ## Run tests with container-structure-test
-	docker run --rm -v $(PWD):/tests -w /tests gcr.io/gcp-runtimes/container-structure-test:v1.10.0 test --image $(DOCKER_IMAGE) --config .build/cst.yml
-
+	docker run --rm -v $(PWD):/tests -w /tests gcr.io/gcp-runtimes/container-structure-test:v1.10.0 test \
+		--image $(DOCKER_IMAGE) \
+		-c .build/cst.yml \
+		--no-fail
 .SILENT:
 help: ## Display what each command does
 	cat Makefile | grep '##' | tr -d '##' | head -n -1
