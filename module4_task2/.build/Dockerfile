@@ -26,7 +26,7 @@ RUN apk add --no-cache build-base
 RUN apk add --no-cache zip
 
 # Install container-structure-test
-RUN curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 \
+RUN curl -LO https://storage.googleapis.com/container-structure-test/v1.10.0/container-structure-test-linux-amd64 \
     && chmod +x container-structure-test-linux-amd64 \
     && mkdir -p $HOME/bin \
     && export PATH=$PATH:$HOME/bin \

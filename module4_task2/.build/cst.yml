@@ -1,10 +1,15 @@
 schemaVersion: "2.0.0"
 tests:
-  - name: Docker image tests
+  - name: Dockerfile linting
     structureTests:
+      - test: hadolint
+        flags: ["--no-fail"]
+      - test: hadolint-entrypoint
+      - test: hadolint-cmd
+  - name: Docker image tests
+    imageTests:
       - test: metadata
       - test: existence
       - test: content
       - test: entrypoint
       - test: cmd
-
