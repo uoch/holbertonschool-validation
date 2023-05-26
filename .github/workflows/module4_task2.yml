@@ -29,6 +29,7 @@ jobs:
         run: |
           make help
           make build-docker
+          make docker-tests
           make build
           make lint
           make run
@@ -37,7 +38,6 @@ jobs:
           make integration-tests
           make package
           make clean
-          make docker-tests
         working-directory: module4_task2
       - name: clean
         run: make clean
