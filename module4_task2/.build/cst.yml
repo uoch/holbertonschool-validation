@@ -1,2 +1,7 @@
 ---
 schemaVersion: "2.0.0"
+  - test: hadolint
+    flags: ["--no-fail"]
+  - test: hadolint-entrypoint
+  - test: hadolint-cmd
+
