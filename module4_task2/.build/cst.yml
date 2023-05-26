@@ -1,14 +1,8 @@
 ---
-apiVersion: "v1"
-kind: "Config"
-metadata:
-  name: "container-structure-test"
-spec:
-  tests:
-    - name: "hadolint"
-      image: "<your_image_name>"
-      args: ["--no-fail"]
-    - name: "hadolint-entrypoint"
-      image: "<your_image_name>"
-    - name: "hadolint-cmd"
-      image: "<your_image_name>"
+schemaVersion: "2.0.0"
+structureTests:
+  - test: hadolint
+    flags: ["--no-fail"]
+  - test: hadolint-entrypoint
+  - test: hadolint-cmd
+
