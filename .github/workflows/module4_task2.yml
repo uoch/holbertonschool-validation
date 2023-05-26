@@ -31,13 +31,7 @@ jobs:
           make build-docker
           docker images
           sudo systemctl start docker
-          if [ -S /var/run/docker.sock ]; then
-            echo "The /var/run/docker.sock file exists."
-          else
-            echo "The /var/run/docker.sock file does not exist."
-          fi
-
-          sudo chmod 666 /var/run/docker.sock
+          sudo chmod 777 /var/run/docker.sock
           make docker-tests
           make build
           make lint
