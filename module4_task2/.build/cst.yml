@@ -1,5 +1,5 @@
 ---
-schemaVersion: "2.0.0"
+schemaVersion: "1.10.0"
 structureTests:
       - test: hadolint
         flags: ["--no-fail"]
