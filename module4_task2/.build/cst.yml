@@ -1,7 +1,8 @@
 ---
-schemaVersion: "2.0.0"
-  - test: hadolint
-    flags: ["--no-fail"]
-  - test: hadolint-entrypoint
-  - test: hadolint-cmd
-
+schemaVersion: '2.0.0' # Make sure to test the latest schema version
+commandTests:
+- name: 'apt-get'
+  command: 'apt-get'
+  args: ['help']
+  excludedError: ['.*FAIL.*']
+  expectedOutput: ['.*Usage.*']
