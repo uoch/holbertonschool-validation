@@ -29,6 +29,7 @@ jobs:
         run: |
           make help
           make build-docker
+          docker images
           make docker-tests
           make build
           make lint
