@@ -58,7 +58,7 @@ docker-tests: ## Run tests with container-structure-test
 	sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test && \
 	docker run --rm -v $(PWD):/tests -w /tests gcr.io/gcp-runtimes/container-structure-test:v1.10.0 test \
 		--image $(DOCKER_IMAGE) \
-		-c .build/cst.yml || true
+		-c .build/cst.yml
 
 .SILENT:
 help: ## Display what each command does
