@@ -43,7 +43,7 @@ jobs:
           make package
           make clean
         working-directory: module4_task2
-      - name: clean
+      - name: cleans
         run: make clean
         working-directory: module4_task2
       - name: Release
